@@ -1,17 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { FeedItemComponent } from './feed-item.component';
 
-describe('AppComponent', () => {
+describe('FeedItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        FeedItemComponent
       ],
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should create the component', () => {
+    const fixture = TestBed.createComponent(FeedItemComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
