@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { RssFeedRoutingModule } from './rss-feed-routing.module';
@@ -25,6 +26,7 @@ import { RssFeedService } from './rss-feed.service';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     RssFeedRoutingModule,
