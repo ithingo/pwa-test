@@ -1,7 +1,22 @@
 <div class="content"> 
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-9 .col-xl-9">
-      <p>new rss page</p>
+      <form [formGroup]="newRssForm">
+        <div>
+          <label for="sourceTite">
+            Source Title
+            <span style="color: red;">*</span>
+          </label>
+          <input id="sourceTite" type="text" formControlName="title" />
+        </div>
+        <div>
+          <label for="sourceUrl">
+            Source URl
+            <span style="color: red;">*</span>
+          </label>
+          <input id="sourceUrl" type="text" formControlName="url" />
+        </div>
+      </form>
     </div>
   </div>
 

@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { RssFeedRoutingModule } from './rss-feed-routing.module';
@@ -9,6 +10,8 @@ import { NewRssComponent } from './pages/new-rss/new-rss.component';
 import { RssFeedComponent } from './pages/rss-feed/rss-feed.component';
 import { RssItemComponent } from './components/rss-item/rss-item.component';
 import { RssListComponent } from './pages/rss-list/rss-list.component';
+
+import { RssFeedService } from './rss-feed.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,12 @@ import { RssListComponent } from './pages/rss-list/rss-list.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RssFeedRoutingModule,
+  ],
+  providers: [
+    RssFeedService,
   ]
 })
 export class RssFeedModule { }

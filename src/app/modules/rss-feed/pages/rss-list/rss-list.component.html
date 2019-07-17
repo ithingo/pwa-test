@@ -1,0 +1,12 @@
+<div class="content"> 
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-9 .col-xl-9">
+      <app-rss-item
+        *ngFor="let channel of rssList | async"
+        [channel]="channel.payload.doc.data()"
+        (changeRss)="changeRss(channel)"
+        (deleteRss)="deleteRss(channel)"
+      ></app-rss-item>
+    </div>
+  </div>
+</div>

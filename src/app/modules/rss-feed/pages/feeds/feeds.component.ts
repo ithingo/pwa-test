@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from '@angular/router';
 
+import { RssFeedService } from '../../rss-feed.service';
+
 @Component({
   selector: 'app-feeds',
   templateUrl: './feeds.component.html',
@@ -9,6 +11,7 @@ import { Router } from '@angular/router';
 export class FeedsComponent {
   constructor(
     private router: Router,
+    private rssFeedService: RssFeedService,
   ) {}
 
   public viewRssList(): void {
