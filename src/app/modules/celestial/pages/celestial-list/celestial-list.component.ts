@@ -13,7 +13,7 @@ import { CelestialService } from '../../celestial.service';
 export class CelestialListComponent {
   public celestials: Observable<any>;
 
-  private loadRssList(): void {
+  private loadCelestialList(): void {
     this.celestials = this.celestialService.getAllCelestials();
   }
 
@@ -21,7 +21,7 @@ export class CelestialListComponent {
     private celestialService: CelestialService,
     private router: Router,
   ) {
-    this.loadRssList();
+    this.loadCelestialList();
   }
 
   public addCelestial(): void {
@@ -34,6 +34,6 @@ export class CelestialListComponent {
   
   public deleteCelestial(channel): void {
     this.celestialService.deleteCelestial(channel.payload.doc.id);
-    this.loadRssList();
+    this.loadCelestialList();
   }
 }

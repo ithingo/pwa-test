@@ -8,16 +8,16 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 export class CelestialItemComponent {
   @Input() channel: any;
 
-  @Output() changeRss = new EventEmitter<void>();
-  @Output() deleteRss = new EventEmitter<void>();
+  @Output() changeCelestial = new EventEmitter<void>();
+  @Output() deleteCelestial = new EventEmitter<void>();
 
   constructor() {}
 
   public edit(): void {
-    this.changeRss.emit();
+    this.changeCelestial.emit();
   }
 
   public delete(): void {
-    this.deleteRss.emit();
+    this.deleteCelestial.emit();
   }
 }
