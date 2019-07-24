@@ -1,15 +1,15 @@
-<ng-container *ngIf="!channel">
+<ng-container *ngIf="!celestial">
   <p>Loading...</p>
 </ng-container>
 
-<ng-container *ngIf="channel">
+<ng-container *ngIf="celestial">
   <hr />
   <div>
-    <p>Name: {{channel.name}}</p>
-    <p>Type: {{channel.type}}</p>
-    <p>Age: {{channel.age}}</p>
-    <p>Radius: {{channel.radius}}</p>
-    <p>Distance to the Earth: {{channel.distance}}</p>
+    <p>Name: {{celestial.name}}</p>
+    <p>Type: {{celestial.type}}</p>
+    <p>Age: {{celestial.age}}</p>
+    <p>Radius: {{celestial.radius}}</p>
+    <p>Distance to the Earth: {{celestial.distance}}</p>
     <button type="button" (click)="edit()">Edit</button>
     <button type="button" (click)="delete()">Delete</button>
   </div>

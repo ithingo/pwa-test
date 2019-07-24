@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
   styleUrls: ['./celestial-item.component.scss']
 })
 export class CelestialItemComponent {
-  @Input() channel: any;
+  @Input() celestial: any;
 
   @Output() changeCelestial = new EventEmitter<void>();
   @Output() deleteCelestial = new EventEmitter<void>();
