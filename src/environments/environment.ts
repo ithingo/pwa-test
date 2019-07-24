@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    projectId: "",
+    apiKey: "AIzaSyCGqy4pX0ITDyAfWnnG9unQ_RSx1jnTces",
+    authDomain: "pwa-test-3daac.firebaseapp.com",
+    databaseURL: "https://pwa-test-3daac.firebaseio.com",
+    projectId: "pwa-test-3daac",
     storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
+    messagingSenderId: "998847273933",
+    appId: "1:998847273933:web:9c6ef19812290bd1"
   }
 };
 
