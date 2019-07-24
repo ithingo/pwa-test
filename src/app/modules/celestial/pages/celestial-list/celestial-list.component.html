@@ -1,0 +1,13 @@
+<div class="content"> 
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-9 .col-xl-9">
+      <button type="button" (click)="addCelestial()">Add celestial object</button>
+      <app-celestial-item
+        *ngFor="let channel of celestials | async"
+        [channel]="channel.payload.doc.data()"
+        (changeCelestial)="changeCelestial(channel)"
+        (deleteCelestial)="deleteCelestial(channel)"
+      ></app-celestial-item>
+    </div>
+  </div>
+</div>

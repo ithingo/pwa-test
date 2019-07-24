@@ -1,0 +1,49 @@
+<div class="content"> 
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-9 .col-xl-9">
+      <form [formGroup]="celestialForm">
+        <div>
+          <label for="name">
+            Name:
+            <span style="color: red;">*</span>
+          </label>
+          <input id="name" type="text" formControlName="name" autocomplete="off" />
+        </div>
+        <div>
+          <label for="type">
+            Type:
+            <span style="color: red;">*</span>
+          </label>
+          <input id="type" type="text" formControlName="type" autocomplete="off" />
+        </div>
+        <div>
+          <label for="radius">
+            Radius:
+            <span style="color: red;">*</span>
+          </label>
+          <input id="radius" type="text" formControlName="radius" autocomplete="off" />
+        </div>
+        <div>
+          <label for="age">
+            Age:
+            <span style="color: red;">*</span>
+          </label>
+          <input id="age" type="text" formControlName="age" autocomplete="off" />
+        </div>
+        <div>
+          <label for="distance">
+            Distance to the Earth:
+            <span style="color: red;">*</span>
+          </label>
+          <input id="distance" type="text" formControlName="distance" autocomplete="off" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-9 .col-xl-9">
+      <button type="button" (click)="addCelestialObject()">{{editMode ? 'Update' : 'Add'}}</button>
+    </div>
+  </div>
+</div>
