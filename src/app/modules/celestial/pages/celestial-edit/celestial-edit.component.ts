@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CelestialService } from '../../celestial.service';
+import { IdbService } from 'src/app/shared/services/idb.service';
 
 @Component({
   selector: 'app-celestial-edit',
@@ -11,6 +12,7 @@ import { CelestialService } from '../../celestial.service';
 })
 export class CelestialEditComponent {
   private celestialId: string;
+  private networkMode: 'online' | 'offline';
 
   public editMode: boolean = false;
   public celestialForm: FormGroup;
@@ -40,27 +42,42 @@ export class CelestialEditComponent {
     this.celestialForm.setValue(data);
   }
 
+  private async syncData(): Promise<any> {
+    const data = this.celestialForm.value;
+    if (this.networkMode === 'offline') {
+      this.idbService.addItems('Sync-Items', data);
+      this.idbService.addItems('Items', data);
+    }
+    if (this.networkMode === 'online') {
+      this.idbService.addItems('Items', data);
+      await this.idbService.getAllData('Items');
+    }
+  }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private celestialService: CelestialService,
+    private idbService: IdbService,
   ) {
     this.createForm();
     this.initWithObjectToEdit();
   }
 
-  public addCelestialObject(): void {
-    if (this.celestialForm.invalid) { return; }
-
-    const actionPromise = this.editMode
-      ? this.celestialService.updateCelestial(this.celestialId, this.celestialForm.value)
-      : this.celestialService.addCelestial(this.celestialForm.value);
-    actionPromise
-      .then(res => {
-        console.log(res)
-        this.celestialForm.reset();
-        this.router.navigateByUrl('celestial/list');
-      })
-      .catch(err => console.error(err));
+  public async addCelestialObject(): Promise<void> {
+    if (this.celestialForm.valid) {
+      await this.syncData();
+      if (this.networkMode === 'online') {
+        const actionPromise = this.editMode
+          ? this.celestialService.updateCelestial(this.celestialId, this.celestialForm.value)
+          : this.celestialService.addCelestial(this.celestialForm.value);
+        actionPromise
+          .then(res => {
+            this.celestialForm.reset();
+            this.router.navigateByUrl('celestial/list');
+          })
+          .catch(err => console.error(err));
+        }
+      }
   }
 }
