@@ -6,6 +6,7 @@
     "start": "ng serve -o",
     "build": "ng build",
     "build-prod": "ng build --prod",
+    "pwa": "ng build --prod && cd dist && http-server -p 8080",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -20,7 +21,9 @@
     "@angular/forms": "~8.1.1",
     "@angular/platform-browser": "~8.1.1",
     "@angular/platform-browser-dynamic": "~8.1.1",
+    "@angular/pwa": "^0.801.2",
     "@angular/router": "~8.1.1",
+    "@angular/service-worker": "~8.1.1",
     "@fortawesome/fontawesome-free": "^5.9.0",
     "angular-bootstrap-md": "^8.0.0",
     "animate.css": "^3.7.2",
