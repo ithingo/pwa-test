@@ -6,7 +6,7 @@
     "start": "ng serve -o",
     "build": "ng build",
     "build-prod": "ng build --prod",
-    "pwa": "ng build --prod && cd dist && http-server -p 8080",
+    "pwa": "ng build --prod && cd dist && http-server -o -p 8080",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
