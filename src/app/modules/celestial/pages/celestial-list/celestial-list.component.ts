@@ -36,7 +36,7 @@ export class CelestialListComponent implements OnInit {
         if (this.networkMode === 'online' && onlineDataLength === 0) {
           this.celestials = this.celestialService
             .getAllCelestials()
-            .pipe(map(this.processActions));
+            .pipe(this.processActions);
         } else { this.celestials = of(items);}
 
         this.idbService
@@ -50,15 +50,20 @@ export class CelestialListComponent implements OnInit {
   }
 
   private async mergeDatabases(): Promise<void> {
-    const results = await this.getOfflineData();
-    const offlineData = results[0]
-    offlineData.forEach((cel: any, index: number) => {
-      if (cel == offlineData[index]) {
-        this.celestialService.addCelestial(cel);
-        this.idbService.addItems('Items', cel);
-        this.idbService.deleteItems('Sync-Items', cel.id);
-      }
-    });
+    // @FIXME: returns empty array
+    this.getOfflineData()
+      .then(offlineData => {
+        if (offlineData.length > 0) {
+          offlineData.forEach((cel: any, index: number) => {
+            if (cel == offlineData[index]) {
+              this.celestialService.addCelestial(cel);
+              this.idbService.addItems('Items', cel);
+              this.idbService.deleteItems('Sync-Items', cel.id);
+            }
+          });
+        }
+      })
+      .catch(err => console.error(err));
   }
 
   constructor(
@@ -79,11 +84,13 @@ export class CelestialListComponent implements OnInit {
   }
 
   public changeCelestial(channel): void {
-    this.router.navigateByUrl(`celestial/edit/${channel.payload.doc.id}`);
+    // @FIXME: later pass doc id, now passes only celestial obj
+    // this.router.navigateByUrl(`celestial/edit/${channel.payload.doc.id}`);
   }
   
   public deleteCelestial(channel): void {
-    this.celestialService.deleteCelestial(channel.payload.doc.id);
+    // @FIXME: later pass doc id, now passes only celestial obj
+    // this.celestialService.deleteCelestial(channel.payload.doc.id);
     this.loadDataAndSyncIDb();
   }
 }

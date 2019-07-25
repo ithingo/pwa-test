@@ -2,12 +2,19 @@
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-9 .col-xl-9">
       <button type="button" (click)="addCelestial()">Add celestial object</button>
-      <app-celestial-item
+      <!-- @FIXME: review objects types, pass objects with doc ids -->
+      <!-- <app-celestial-item
         *ngFor="let channel of celestials | async"
-        [celestial]="channel.payload.doc.data()"
+        [celestial]="channel?.payload?.doc?.data()"
         (changeCelestial)="changeCelestial(channel)"
         (deleteCelestial)="deleteCelestial(channel)"
-      ></app-celestial-item>
+      ></app-celestial-item> -->
+      <app-celestial-item
+      *ngFor="let obj of celestials | async"
+      [celestial]="obj"
+      (changeCelestial)="changeCelestial(obj)"
+      (deleteCelestial)="deleteCelestial(obj)"
+    ></app-celestial-item>
     </div>
   </div>
 </div>
