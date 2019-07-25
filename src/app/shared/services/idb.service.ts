@@ -1,6 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from 'rxjs';
-import idb from 'idb';
+import { openDB, deleteDB, wrap, unwrap } from 'idb';
+
+/**
+ * @TODO: index db works, later switch to 'ngx-indexed-db
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +16,16 @@ export class IdbService {
   constructor() {}
 
   public connectToIdb(): void {
-    this.dbPromise = idb
-      .open('pwa-test-db', 1, (upgardeDb) => {
-        if (!upgardeDb.objectStoreNames.contains('Items')) {
-          upgardeDb.createObjectStore('Items', { keyPath: 'id', autoIncrement: true });
+    this.dbPromise = openDB('pwa-test-db', 1, {
+      upgrade(db) {
+        if (!db.objectStoreNames.contains('Items')) {
+          db.createObjectStore('Items', { keyPath: 'id', autoIncrement: true });
         }
-        if (!upgardeDb.objectStoreNames.contains('Sync-Items')) {
-          upgardeDb.createObjectStore('Sync-Items', { keyPath: 'id', autoIncrement: true });
+        if (!db.objectStoreNames.contains('Sync-Items')) {
+          db.createObjectStore('Sync-Items', { keyPath: 'id', autoIncrement: true });
         }
-      });
+      }
+    });
   }
 
   public addItems(target: string, celestial: any) {
@@ -46,7 +51,7 @@ export class IdbService {
         const store = transaction.objectStore(target);
         store.delete(celestial);
         this.getAllData(target)
-          .then(items => this.data$.next(items))
+          .then(items => (this.data$.next(items), console.log(items)))
           .catch(err => console.error(err));
         return transaction.complete;
       });
